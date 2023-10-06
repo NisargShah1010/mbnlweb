@@ -2,5 +2,4 @@ streamlit
 pyodbc
 secret
 pandas
-time
 datetime
