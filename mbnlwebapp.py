@@ -2,7 +2,6 @@ import streamlit as st
 import pyodbc
 import secret
 import pandas as pd
-import time as t
 import datetime
 
 conn = pyodbc.connect(secret.connection_string)
@@ -60,14 +59,12 @@ def main():
                     val = (cella,cellb,project,comment,planner,LOStask,disha,dishb,bearinga,bearingb,ordertype,date)
                     mycursor.execute(sql,val)
                     conn.commit()
-                    with st.spinner("WO Creation in progress ! "):
-                        t.sleep(3)
-                        st.success("Record Created Successfully!!!")
-                        mycursor.execute("select top 1 WO_Number from [i].[WO_Management]  order by [WO_Number] desc")
-                        results = mycursor.fetchall()
-                        st.markdown("# Work Order Number")
-                        st.write("# **{}**".format(results[0][0]))
-                        st.balloons()
+                    st.success("Record Created Successfully!!!")
+                    mycursor.execute("select top 1 WO_Number from [i].[WO_Management]  order by [WO_Number] desc")
+                    results = mycursor.fetchall()
+                    st.markdown("# Work Order Number")
+                    st.write("# **{}**".format(results[0][0]))
+                    st.balloons()
                     
         elif option == "View":
             st.subheader("Read Records")
@@ -115,14 +112,12 @@ def main():
                     val = (cella,project,comment,planner,BTFEAStask,ordertype,date)
                     mycursor.execute(sql,val)
                     conn.commit()
-                    with st.spinner("WO Creation in progress ! "):
-                        t.sleep(3)
-                        st.success("Record Created Successfully!!!")
-                        mycursor.execute("select top 1 WO_Number from [i].[WO_Management]  order by [WO_Number] desc")
-                        results = mycursor.fetchall()
-                        st.markdown("# Work Order Number")
-                        st.write("# **{}**".format(results[0][0]))
-                        st.balloons()
+                    st.success("Record Created Successfully!!!")
+                    mycursor.execute("select top 1 WO_Number from [i].[WO_Management]  order by [WO_Number] desc")
+                    results = mycursor.fetchall()
+                    st.markdown("# Work Order Number")
+                    st.write("# **{}**".format(results[0][0]))
+                    st.balloons()
                     
         elif option == "View":
             st.subheader("Read Records")
