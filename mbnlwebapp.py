@@ -1,17 +1,33 @@
 import streamlit as st
 import pyodbc
-import secret
+#import secret
 import pandas as pd
 import datetime
+import toml
 
-conn = pyodbc.connect(secret.connection_string)
+
+# Create a connection string
+def init_connection():
+    return pyodbc.connect(
+        "Driver={ODBC Driver 18 for SQL Server};SERVER="
+        + st.secrets["Server"]
+        + ";DATABASE="
+        + st.secrets["Database"]
+        + ";UID="
+        + st.secrets["Username"]
+        + ";PWD="
+        + st.secrets["Password"]
+    )
+#Calling the function
+conn = init_connection()
+#Creating a cursor
 mycursor = conn.cursor()
 
 #Create App : 
 def main():
     st.title("MBNL Work Order Management");
     #Display Options for CRUD operations
-    st.sidebar.info("Please Select the WO Type:")
+    st.sidebar.warning("Please Select the WO Type:")
     typeofwo = st.sidebar.radio("WO Types Available:", ["LOS","BTFEAS"])
     if typeofwo == "LOS":
         option = st.radio("Select an Operation", ["Create","View"])
@@ -76,7 +92,7 @@ def main():
         #Perform Selected CRUD Operation
         if option == "Create":
             st.subheader("Create a Record") 
-            # Get the list of Dropdowns for fields =  projects, catagory, and planners from the database 
+            # Get the list of Dropdowns for fields =  projects, bT Tasks, and planners from the database 
             mycursor.execute("SELECT [Display] FROM [ref].[Project_Name_coordination]")
             project_list = mycursor.fetchall()
             mycursor.execute("SELECT [Display] FROM [ref].[Planner]")
