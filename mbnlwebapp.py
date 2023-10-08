@@ -4,12 +4,11 @@ import pyodbc
 import pandas as pd
 import datetime
 import toml
-from PIL import Image
+#from PIL import Image
 
-im = Image.open("MBNL.jpg")
 st.set_page_config(
     page_title = "MBNL WO MANAGEMENT",
-    #page_icon=im
+    page_icon="MBNL.jpg"
     page_icon=":tokyo_tower:"
 )
 
@@ -34,7 +33,7 @@ mycursor = conn.cursor()
 def main():
     st.title("MBNL Work Order Management");
     #Display Options for CRUD operations
-    st.sidebar.image(im)
+    st.sidebar.image("MBNL.jpg")
     #st.sidebar.warning("Please Select the WO Type:")
     typeofwo = st.sidebar.radio("WO Types Available:", ["LOS","BTFEAS"])
     if typeofwo == "LOS":
@@ -175,3 +174,8 @@ if submit and email == actual_email and password == actual_password:
 elif submit and email != actual_email and password != actual_password:
     st.error("Login failed")
 """
+
+
+
+
+
