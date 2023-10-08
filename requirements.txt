@@ -1,4 +1,4 @@
-streamlit
-pyodbc
-pandas
+streamlit 1.27.2
+pyodbc 4.0.35
+pandas 2.1.1
 datetime
