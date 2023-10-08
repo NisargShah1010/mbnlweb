@@ -4,7 +4,14 @@ import pyodbc
 import pandas as pd
 import datetime
 import toml
+from PIL import Image
 
+im = Image.open("MBNL.jpg")
+st.set_page_config(
+    page_title = "MBNL WO MANAGEMENT",
+    #page_icon=im
+    page_icon=":tokyo_tower:"
+)
 
 # Create a connection string
 def init_connection():
@@ -27,7 +34,8 @@ mycursor = conn.cursor()
 def main():
     st.title("MBNL Work Order Management");
     #Display Options for CRUD operations
-    st.sidebar.warning("Please Select the WO Type:")
+    st.sidebar.image(im)
+    #st.sidebar.warning("Please Select the WO Type:")
     typeofwo = st.sidebar.radio("WO Types Available:", ["LOS","BTFEAS"])
     if typeofwo == "LOS":
         option = st.radio("Select an Operation", ["Create","View"])
@@ -140,10 +148,30 @@ def main():
             df = pd.read_sql("SELECT [WO_Number],[A_End_TMCell_ID],[Project],[Planner_Requested],[BTFEAS_Task],[Order_Type],[Created_On] from [i].[WO_Management] where Order_Type = 'BTFEAS'", conn)
             st.dataframe(df)
 
-
 if __name__ == "__main__":
     main()
 
+"""
+# Create an empty container
+placeholder = st.empty()
 
+actual_email = "email"
+actual_password =  "password"
 
+# Insert a form in the container
+with placeholder.form("login"):
+    st.markdown("#### Enter your credentials")
+    email = st.text_input("Email")
+    password = st.text_input("Password", type="password")
+    submit = st.form_submit_button("Login")
 
+if submit and email == actual_email and password == actual_password:
+        if __name__ == "__main__":
+            main()
+    # If the form is submitted and the email and password are correct,
+    # clear the form/container and display a success message
+        placeholder.empty()
+        st.success("Login successful")
+elif submit and email != actual_email and password != actual_password:
+    st.error("Login failed")
+"""
