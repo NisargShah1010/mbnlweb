@@ -8,7 +8,7 @@ import toml
 
 st.set_page_config(
     page_title = "MBNL WO MANAGEMENT",
-    page_icon="MBNL.jpg"
+    #page_icon="MBNL.jpg"
     page_icon=":tokyo_tower:"
 )
 
