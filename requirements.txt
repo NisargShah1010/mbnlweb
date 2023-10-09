@@ -2,4 +2,4 @@ streamlit
 pyodbc
 pandas
 datetime
-C:\WINDOWS\system32\msodbcsql18.dll
+#C:\WINDOWS\system32\msodbcsql18.dll
